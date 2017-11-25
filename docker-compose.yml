@@ -18,9 +18,10 @@ services:
     container_name: lcdt_back
     ports:
       - "3000:3000"
+    environment:
+      NODE_ENV: dev
     volumes:
       - ./src/:/usr/src/app/:rw
-      - /usr/src/app/node_modules
     networks:
       - bdd
 networks:

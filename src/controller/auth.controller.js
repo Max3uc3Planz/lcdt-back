@@ -1,7 +1,9 @@
 
+const logger = require("../services/logger/winston").get('auth-controller');
+
 async function testFunction(req, res) {
 
-    console.log("je suis dans test.");
+    logger.info("je suis dans test.");
     const test = String(req.params.test);
     res.send({ data: test });
 }
