@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  mysql:
+    image: 'mysql:5.7'
+    container_name: mysql
+    environment:
+      MYSQL_DATABASE: 'la-croisée-des-terroirs'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'P@ssword'
+      MYSQL_RANDOM_ROOT_PASSWORD: 'true'
+    ports:
+      - '3306:3306'
+    networks:
+      - bdd
+  lcdt_back:
+    build: .
+    container_name: lcdt_back
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src/:/usr/src/app/:rw
+      - /usr/src/app/node_modules
+    networks:
+      - bdd
+networks:
+  bdd: null
