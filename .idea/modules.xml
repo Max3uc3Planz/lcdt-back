@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../la-croisee-des-terroirs/.idea/la-croise-des-terroirs.iml" filepath="$PROJECT_DIR$/../la-croisee-des-terroirs/.idea/la-croise-des-terroirs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/lcdt-back.iml" filepath="$PROJECT_DIR$/.idea/lcdt-back.iml" />
     </modules>
   </component>
 </project>
