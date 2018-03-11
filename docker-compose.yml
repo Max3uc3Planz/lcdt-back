@@ -1,19 +1,8 @@
-version: '2'
+version: '3'
 
 services:
-  sequelize:
-    build: .
-    links:
-     - postgres-95
-    volumes:
-      - .:/sequelize
-    environment:
-      SEQ_DB: la_croisee_des_terroirs
-      SEQ_USER: postgres
-      SEQ_PW: NeelpsAnanab69
-
   # PostgreSQL
-  postgres-95:
+  postgres:
     image: sushantdhiman/postgres:9.5
     environment:
       POSTGRES_USER: postgres
@@ -23,14 +12,23 @@ services:
       - /mnt/sequelize-postgres-ramdisk:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-    container_name: postgres-95
+    networks:
+      - postgres
+    container_name: postgres
 
   lcdt_back:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: lcdt_back
     ports:
       - "3000:3000"
+    networks:
+      - postgres
     environment:
       NODE_ENV: dev
     volumes:
       - ./src/:/usr/src/app/:rw
+
+networks:
+  postgres: null
