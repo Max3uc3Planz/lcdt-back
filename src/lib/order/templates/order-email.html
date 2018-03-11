@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <style>
+    .summary-table {
+      width: 20%;
+    }
+
+    .blank_row {
+      height: 15px;
+    }
+
+  </style>
+  <title>Votre facture Cantine</title>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/EmailMessage">
+  <img style="display: block; margin: 0 10px 10px 0; height: 50px; width: 50px;" src="cid:logoCantine@mailLogo" alt="Logo">
+  <p>
+    <span>Bonjour {{ userFirstname }} {{ userLastname }},</span> <br><br>
+
+    <span>Merci d'avoir commandé chez Cantine</span> <br><br>
+    <span>
+    {{#if express}}
+      Votre commande sera livrée sous 30 minutes.
+    {{/if}}
+    {{#if early}}
+      La commande sera livrée le <strong>{{ tslotDate }}</strong> entre <strong>{{ tslotMin }}</strong> et <strong>{{ tslotMax }}</strong>.
+    {{/if}}
+    </span><br><br>
+    <span>Veuillez trouver ci-joint votre facture correspondant à votre commande chez <a href="http://www.cantine.co">Cantine.co</a>.<br><br>
+
+    <span>Retrouvez ci-dessous un aperçu de votre commande : </span> <br>
+    <span>Adresse de livraison </span> <br>
+    <span>{{ userFirstname }} {{ userLastname }} </span> <br>
+    <span>{{ deliveryAddress1 }} </span> <br>
+    <span>{{ deliveryAddressZP }} {{ deliveryAddressCity }}</span> <br><br>
+
+    <span>Information de livraison</span><br><br>
+    <table class="summary-table">
+      <tbody>
+        {{#each items}}
+        <tr>
+          <td>{{ this.quantity }} X {{ this.name }}</td>
+          <td>{{ this.totalTax }}€</td>
+        </tr>
+        {{/each}}
+        <tr class="blank_row">
+          <td colspan="3"></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Sous-total</td>
+          <td>{{ subTotal }}€</td>
+        </tr>
+        <tr>
+          <td>Frais de livraison </td>
+          <td>{{ deliveryCost }}€</td>
+        </tr>
+        <tr>
+          <td>Réduction</td>
+          <td>- {{ discountCost }}€</td>
+        </tr>
+        <tr>
+          <td>Total</td>
+          <td>{{ total }}€</td>
+        </tr>
+      </tfoot>
+    </table> <br><br>
+
+
+    <span>Nous vous souhaitons un bon appétit et espérons vous revoir bientôt sur cantine.co</span><br><br>
+    <span>Cantiment vôtre,</span><br>
+    <span>Votre équipe Cantine</span>
+  </p>
+</body>
+
+</html>

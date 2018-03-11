@@ -10,11 +10,22 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.2",
+    "request": "^2.81.0",
+    "boom": "^5.2.0",
+    "hapi": "^16.4.2",
+    "hapi-auth-jwt2": "^7.2.4",
+    "hapi-sequelize": "^3.0.4",
+    "joi": "^10.5.2",
+    "jsonwebtoken": "^7.4.1",
     "dotenv": "^4.0.0",
     "express": "^4.15.5",
     "winston": "^3.0.0-rc1",
-    "sequelize": "*",
-    "mysql2": "*",
-    "jsonwebtoken": "*"
+    "pg": "^6.4.2",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.30.4",
+    "sequelize-fixtures": "^0.5.6",
+    "socket.io": "^2.0.3",
+    "socketio-jwt": "^4.5.0"
   }
 }

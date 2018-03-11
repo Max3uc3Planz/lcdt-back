@@ -1,18 +1,30 @@
-version: '3'
+version: '2'
 
 services:
-  mysql:
-    image: 'mysql:5.7'
-    container_name: mysql
+  sequelize:
+    build: .
+    links:
+     - postgres-95
+    volumes:
+      - .:/sequelize
     environment:
-      MYSQL_DATABASE: 'la-croisée-des-terroirs'
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'P@ssword'
-      MYSQL_RANDOM_ROOT_PASSWORD: 'true'
+      SEQ_DB: la_croisee_des_terroirs
+      SEQ_USER: postgres
+      SEQ_PW: NeelpsAnanab69
+
+  # PostgreSQL
+  postgres-95:
+    image: sushantdhiman/postgres:9.5
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: NeelpsAnanab69
+      POSTGRES_DB: la_croisee_des_terroirs
+    volumes:
+      - /mnt/sequelize-postgres-ramdisk:/var/lib/postgresql/data
     ports:
-      - '3306:3306'
-    networks:
-      - bdd
+      - "5432:5432"
+    container_name: postgres-95
+
   lcdt_back:
     build: .
     container_name: lcdt_back
@@ -22,7 +34,3 @@ services:
       NODE_ENV: dev
     volumes:
       - ./src/:/usr/src/app/:rw
-    networks:
-      - bdd
-networks:
-  bdd: null

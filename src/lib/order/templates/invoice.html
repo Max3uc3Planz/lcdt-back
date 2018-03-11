@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Facture souscription Premium</title>
+  <style>
+    body {
+      padding: 10px;
+    }
+
+    .recipient {
+      margin-top: 50px;
+      border: 1px solid black;
+      padding: 10px;
+      background-color: lightgrey;
+      width: 50%;
+    }
+
+    .recipient__title {
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    .subscription-table {
+      border-collapse: collapse;
+      width: 80%;
+      margin: auto;
+    }
+
+    .subscription-table,
+    .subscription-table th,
+    .subscription-table td {
+      border: 1px solid black;
+    }
+
+    .subscription-table td,
+    .subscription-table th {
+      padding: 10px;
+    }
+
+    .subscription-table th {
+      background-color: #83DBB1;
+    }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <img style="display: block; margin: 0 10px 10px 0; height: 50px; width: auto;" src="{{ logo }}" alt="Logo">
+  </header>
+
+  <div class="content">
+    <div class="recipient">
+      <p class="recipient__title">Adressé à :</p>
+      <p class="recipient__content">
+        {{ customerFirstname }} {{ customerLastname }} <br> {{ customerAddress }} <br> {{ customerEmail }}
+      </p>
+    </div>
+    <div class="date">
+      <p>Achat effectué le : {{ purchaseDate }}</p>
+    </div>
+
+    <div>
+      <table class="subscription-table">
+        <thead>
+          <tr>
+            <th>Article</th>
+            <th>Quantité</th>
+            <th>Prix unitaire (€)</th>
+            <th>Prix total (€)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each items}}
+          <tr>
+            <td>{{ this.name }}</td>
+            <td>{{ this.quantity }}</td>
+            <td>{{ this.unitPrice }}€</td>
+            <td>{{ this.totalTax }}€</td>
+          </tr>
+          {{/each}}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3">Montant HT</td>
+            <td>{{ totalHT }}€</td>
+          </tr>
+          <tr>
+            <td colspan="3">Montant TVA</td>
+            <td>{{ totalTVA }}€</td>
+          </tr>
+          <tr>
+            <td colspan="3">Montant total</td>
+            <td>{{ totalTTC }}€</td>
+          </tr>
+          <tr>
+            <td colspan="3">Frais de livraison TTC</td>
+            <td>{{ totalDelivery }}€</td>
+          </tr>
+          <tr>
+            <td colspan="3">Code Promo</td>
+            <td>-{{ totalDiscount }}€</td>
+          </tr>
+          <tr>
+            <td colspan="3">Montant Payé</td>
+            <td>{{ totalTTC }}€</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</body>
+
+</html>

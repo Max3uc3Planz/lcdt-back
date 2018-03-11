@@ -1,5 +1,7 @@
 require("./services/config/config");
 const express = require('express');
+const Hapi = require('hapi');
+const Sequelize = require('sequelize');
 
 const logger = require('./services/logger/winston');
 
@@ -13,8 +15,8 @@ app.use('/auth', authRoute);
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT);
-console.log('apps ruuning on port ' + PORT);
+app.listen(PORT, "0.0.0.0");
+console.log('apps running on port ' + PORT);
 
 
 
